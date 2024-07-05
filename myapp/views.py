@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import time
-from run_model import generate_response, model, tokenizer
+from run_model import generate_response, generate_response_from_context, find_best_response, model, tokenizer, embed_model, index, responses
 
 @csrf_exempt
 def chat_view(request):
@@ -12,8 +12,20 @@ def chat_view(request):
         try:
             data = json.loads(request.body)
             message = data.get('message', '')
-            # Process the message with your LLM model
-            response_text = generate_response(model, tokenizer, message)
+            mode = data.get('mode', 'Normal')
+            
+            # Process the message with the LLM model
+            
+            if mode == 'RAG':
+                best_context = find_best_response(message, embed_model, index, responses)
+                response_text = generate_response_from_context(model, tokenizer, message, best_context)
+
+                # response = {'message': message + " (RAG)"}
+            else:
+                response_text = generate_response(model, tokenizer, message)
+                
+                # response = {'message': message + " (Normal)"}
+
             response = {'message': response_text}
             # time.sleep(4)
             # response = {'message': message}
