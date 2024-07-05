@@ -5,18 +5,19 @@ const ChatPage = () => {
   const [message, setMessage] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [mode, setMode] = useState("Normal");
 
   const handleSend = async () => {
     try {
       setIsLoading(true);
+      console.log({ message, mode });
       const res = await fetch("/chat/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message, mode }),
       });
-
       const data = await res.json();
       setResponse(data.message);
     } catch (error) {
@@ -49,22 +50,34 @@ const ChatPage = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
-            <button
-              onClick={handleSend}
-              className={`w-[765px] relative inline-flex h-12 overflow-hidden rounded-lg p-[1px] ${focusStyles}`}
-            >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-              <span className="text-md font-mono inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 hover:bg-[#050c2e] transition-all duration-150 ease-in px-3 py-1 font-bold text-white backdrop-blur-3xl">
-                {isLoading ? (
-                  <div className="flex items-center justify-center">
-                    <div className="w-5 h-5 border-4 border-t-4 border-t-white border-[#050c2e] rounded-full animate-spin"></div>
-                    <span className="ml-2">Loading...</span>
-                  </div>
-                ) : (
-                  "Send"
-                )}
-              </span>
-            </button>
+
+            <div className="flex items-center">
+              <button
+                onClick={handleSend}
+                className={`w-[600px] relative inline-flex h-12 overflow-hidden rounded-lg p-[1px] mr-4 ${focusStyles}`}
+              >
+                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                <span className="text-md font-mono inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-slate-950 hover:bg-[#050c2e] transition-all duration-150 ease-in px-3 py-1 font-bold text-white backdrop-blur-3xl">
+                  {isLoading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-4 border-t-4 border-t-white border-[#050c2e] rounded-full animate-spin"></div>
+                      <span className="ml-2">Loading...</span>
+                    </div>
+                  ) : (
+                    "Send"
+                  )}
+                </span>
+              </button>
+              <select
+                value={mode}
+                onChange={(e) => setMode(e.target.value)}
+                className="w-50 px-4 py-3 bg-slate-950 border border-gray-300 rounded-lg font-bold"
+              >
+                <option value="Normal">Normal</option>
+                <option value="RAG">RAG</option>
+              </select>
+            </div>
+
             {response && (
               <div className="w-full max-w-3xl text-black mt-4 p-4 bg-gray-100 border border-gray-300 rounded-lg break-words h-72 overflow-y-auto">
                 {response}
