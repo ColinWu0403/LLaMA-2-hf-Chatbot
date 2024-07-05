@@ -9,11 +9,8 @@ from llama_index.legacy.embeddings.langchain import LangchainEmbedding
 from llama_index.llms.huggingface import HuggingFaceLLM
 from llama_index.core import ServiceContext
 from llama_index.core import SimpleDirectoryReader
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from run_model import model, tokenizer, device
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from utils import log_time, check_memory_usage, LLM_MODEL_NAME, EMBEDDING_MODEL_NAME
-
 
 # Function to find all PDF files in a directory and its subdirectories
 def find_all_pdfs(directory):
@@ -43,9 +40,6 @@ def read_documents():
 
     # Process PDF files in batches
     for i in range(0, len(pdf_files), batch_size):
-        if not check_memory_usage():
-            logging.warning("Memory usage is high, pausing processing.")
-            break
         batch = pdf_files[i:i+batch_size]
         for pdf_file in batch:
             try:
@@ -53,8 +47,9 @@ def read_documents():
                 documents.extend(reader)
             except Exception as e:
                 logging.warning(f"Failed to read {pdf_file}: {e}")
-                
     return documents
+
+documents = read_documents()
 
 def save_embedding_model(documents):
 
@@ -95,11 +90,6 @@ def find_best_response(text, embeddings_model, index, responses):
     best_response = responses[I[0][0]]
     return best_response
 
-    # # Example usage
-    # input_text = "What are the benefits of using ECG to measure your heart?"
-    # best_response = find_best_response(input_text)
-    # print(best_response)
-    
 
 # Generate answer from context:
 def generate_response_from_context(model, tokenizer, question, context):
@@ -132,23 +122,27 @@ def generate_response_from_context(model, tokenizer, question, context):
         log_time(f"Failed to generate response: {e}")
         return None
 
-def main():
-    # Example usage
-    # input_text = "According to the World Health Organization (WHO), noncommunicable diseases (NCDs) kill how many people anually?"
-    # input_text = "What are some wearable devices that can be used to detect AFib?"
-    # input_text = "If a patient's fasting blood glucose levels are 120 mg/dl, how likely is it that they have diabetes?"
-    # input_text = "How are Convolutional Neural Networks used in predicting blood glucose levels?"
-    # input_text = "What is mitochondrial dysfunction and how can you prevent it?"
-    # input_text = "Explain in simple terms: What is DAE-ConvBiLSTM?"
-    while True:
-        input_text = input("Enter your question or type 'exit' to quit: ")
-        if input_text == 'exit':
-            break
-        print(input_text)
-        best_context = find_best_response(input_text)
-        print("Context: " + best_context)
-        response = generate_response_from_context(model, tokenizer, input_text, best_context)
-        print("Answer: " + response)
-    
+# # Initialize everything from run_model.py
+# model_dir = "./models/"
+# model, tokenizer, embedding_model, llm_config, llm = initialize_all(model_dir)
+# index, responses = load_embedding_model()
 
+# def main():
+#     # Example usage
+#     # input_text = "According to the World Health Organization (WHO), noncommunicable diseases (NCDs) kill how many people anually?"
+#     # input_text = "What are some wearable devices that can be used to detect AFib?"
+#     # input_text = "If a patient's fasting blood glucose levels are 120 mg/dl, how likely is it that they have diabetes?"
+#     # input_text = "How are Convolutional Neural Networks used in predicting blood glucose levels?"
+#     # input_text = "What is mitochondrial dysfunction and how can you prevent it?"
+#     # input_text = "Explain in simple terms: What is DAE-ConvBiLSTM?"
+
+#     while True:
+#         input_text = input("Enter your question or type 'exit' to quit: ")
+#         if input_text == 'exit':
+#             break
+#         print(input_text)
+#         best_context = find_best_response(input_text, embedding_model, index, responses)
+#         print("Context: " + best_context)
+#         response = generate_response_from_context(model, tokenizer, input_text, best_context)
+#         print("Answer: " + response)
 
