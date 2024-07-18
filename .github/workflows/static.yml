@@ -59,18 +59,21 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Initialize a new Git repository in the dist directory
-          git init
+          # Initialize Git if not already initialized
+          if [ -z "$(ls -A .git)" ]; then
+            git init
+            git remote add origin https://github.com/${{ github.repository }}.git
+          fi
+
+          # Checkout or create gh-pages branch
+          git fetch origin gh-pages || git checkout --orphan gh-pages
           
-          # Add remote repository
-          git remote add origin https://github.com/${{ github.repository }}.git
-          
-          # Create or switch to the gh-pages branch
-          git checkout -b gh-pages
-          
-          # Add and commit the build files
+          # Add all files
           git add .
+          
+          # Commit changes
           git commit -m "Deploy to GitHub Pages"
           
-          # Force push to the gh-pages branch
+          # Force push to gh-pages branch
           git push --force origin gh-pages
+          
