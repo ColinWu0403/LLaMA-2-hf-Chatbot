@@ -31,13 +31,49 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          # Upload frontend
-          path: 'client'
+          node-version: '14'
+
+      - name: Install dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Build project
+        run: |
+          cd client
+          npm run build
+
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Navigate to the build directory
+          cd client/dist
+          
+          # Initialize a new Git repository in the dist directory
+          git init
+          
+          # Add remote repository
+          git remote add origin https://github.com/${{ github.repository }}.git
+          
+          # Create or switch to the gh-pages branch
+          git checkout -b gh-pages
+          
+          # Add and commit the build files
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          
+          # Force push to the gh-pages branch
+          git push --force origin gh-pages
+
+          # Clean up
+          cd ..
+          rm -rf dist
