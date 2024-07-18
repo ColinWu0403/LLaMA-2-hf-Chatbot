@@ -56,7 +56,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
           # Navigate to the build output directory
-          cd client/dist
+          cd dist
           
           # Initialize a new Git repository in the dist directory
           git init
