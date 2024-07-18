@@ -54,11 +54,7 @@ jobs:
         run: |
           # Navigate to the build output directory
           cd client/dist
-          
-          # Configure git
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
+
           # Initialize Git if not already initialized
           if [ -z "$(ls -A .git)" ]; then
             git init
