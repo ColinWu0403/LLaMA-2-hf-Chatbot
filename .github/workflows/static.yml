@@ -45,18 +45,19 @@ jobs:
       - name: Build project
         run: |
           cd client
+          mkdir -p dist
           npm run build
 
       - name: Deploy to GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Navigate to the build output directory
+          cd dist
+          
           # Configure git
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Navigate to the build output directory
-          cd dist
           
           # Initialize a new Git repository in the dist directory
           git init
