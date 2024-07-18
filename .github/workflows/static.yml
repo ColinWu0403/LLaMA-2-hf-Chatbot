@@ -55,10 +55,16 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # Navigate to the build directory
-          cd client/dist
+          # Create a new directory for gh-pages
+          mkdir gh-pages
           
-          # Initialize a new Git repository in the dist directory
+          # Copy build files to the gh-pages directory
+          cp -r client/dist/* gh-pages/
+          
+          # Navigate to the gh-pages directory
+          cd gh-pages
+          
+          # Initialize a new Git repository
           git init
           
           # Add remote repository
@@ -76,4 +82,4 @@ jobs:
 
           # Clean up
           cd ..
-          rm -rf dist
+          rm -rf gh-pages
