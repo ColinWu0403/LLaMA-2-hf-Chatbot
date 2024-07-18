@@ -35,7 +35,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '22'
 
       - name: Install dependencies
         run: |
@@ -56,11 +56,15 @@ jobs:
           cd client/dist
 
           # Initialize Git if not already initialized
-          if [ -z "$(ls -A .git)" ]; then
-            git init
-            git remote add origin https://github.com/${{ github.repository }}.git
-          fi
-
+          git init
+          
+          # Configure git user
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Add remote origin
+          git remote add origin https://github.com/${{ github.repository }}.git
+          
           # Checkout or create gh-pages branch
           if git ls-remote --exit-code --heads origin gh-pages; then
             git fetch origin gh-pages
