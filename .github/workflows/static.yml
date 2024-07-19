@@ -46,7 +46,8 @@ jobs:
       - name: Install dependencies
         run: |
           cd client
-          npm install --no-package-lock
+          rm package-lock.json
+          npm install
 
       - name: Build project
         run: |
