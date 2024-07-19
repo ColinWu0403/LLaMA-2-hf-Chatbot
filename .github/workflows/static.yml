@@ -45,7 +45,7 @@ jobs:
       - name: Build project
         run: |
           cd client
-          mkdir -p dist
+          export PATH=$(npm bin):$PATH
           npm run build
 
       - name: Deploy to GitHub Pages
