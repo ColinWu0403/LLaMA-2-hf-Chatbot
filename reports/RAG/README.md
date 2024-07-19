@@ -127,9 +127,13 @@ immediately to avoid any delay  in treatment.
 ```
 As someone with diabetes, you should use REVLIS's AI-GLU Glucose Monitoring Device when:
 
-1. You are taking any medication for diabetes management: The device may affect the ECG signals, which could cause deviation in the blood sugar level. It is recommended to measure 4-6 hours after taking medication.
-2. You are undergoing a medical procedure: The device may not work properly during certain medical procedures, such as MRI, hyperthermia therapy, shock wave lithotripsy, cauterization procedures, external defibrillation of the heart, etc.
-3. You experience any discomfort, loss of consciousness, mental confusion, or are in a state of impending shock: In such cases, seek medical attention immediately to avoid any delay in treatment.
+1. You are taking any medication for diabetes management:
+The device may affect the ECG signals, which could cause deviation in the blood sugar level. It is recommended to measure 4-6 hours after taking medication.
+2. You are undergoing a medical procedure:
+The device may not work properly during certain medical procedures, such as MRI, hyperthermia therapy, shock wave lithotripsy,
+cauterization procedures, external defibrillation of the heart, etc.
+3. You experience any discomfort, loss of consciousness, mental confusion, or are in a state of impending shock:
+In such cases, seek medical attention immediately to avoid any delay in treatment.
 
 It is important to read the instructions carefully before using the product to ensure proper usage and accurate readings.
 ```
@@ -245,18 +249,29 @@ characteristic. avF, augmented Vector Foot; aVL, augmented Vector Left; aVR, aug
 ##### Answer:
 
 ```
-on March 23, 2024 by guest. Please see later in the article for the relevant terms of use.
 To answer your question, the most important features in using ECG to predict diabetes using machine learning models are:
-1. Time-aligned features of beats: The study used beats as the unit of analysis and extracted time-aligned features of these beats as inputs for training the machine learning model.
-2. Both HRV-related and HRV-unrelated beat morphology: The study did not explicitly extract HRV-related features (time and frequency domain) and used the time-aligned features of beats as inputs for training. This approach permitted the inclusion of both HRV-related and HRV-unrelated beat morphology.
-3. Structural damage to myocardium: The study used ECG in a way that information from both the structural and functional abnormalities could be included in training.
-4. High-quality ECG recordings: The study used high-quality ECG recordings to ensure accurate feature extraction and model performance.
-5. Large sample size: The study had a large sample size (n=390) to improve the accuracy of the model.
-6. Machine learning algorithm: The study used an XGBoost-based machine learning model, which is an ensemble approach based on decision-tree analytical framework, and has several advantages like hardware optimization and speed, parallelized tree-building process, tree pruning using a depth-first approach, and L1 and L2 regularization to reduce or avert overfitting.
-7. Model performance evaluation: The study evaluated the performance of the machine learning model using various metrics and compared it with other machine learning and deep learning models.
-8. Clinical validation: The study conducted a clinical validation of the model using an independent test set to assess its accuracy in predicting diabetes.
+1. Time-aligned features of beats:
+The study used beats as the unit of analysis and extracted time-aligned features of these beats as inputs for training the machine learning model.
+2. Both HRV-related and HRV-unrelated beat morphology:
+The study did not explicitly extract HRV-related features (time and frequency domain) and used the time-aligned features of beats as inputs for training.
+This approach permitted the inclusion of both HRV-related and HRV-unrelated beat morphology.
+3. Structural damage to myocardium:
+The study used ECG in a way that information from both the structural and functional abnormalities could be included in training.
+4. High-quality ECG recordings:
+The study used high-quality ECG recordings to ensure accurate feature extraction and model performance.
+5. Large sample size:
+The study had a large sample size (n=390) to improve the accuracy of the model.
+6. Machine learning algorithm:
+The study used an XGBoost-based machine learning model, which is an ensemble approach based on decision-tree analytical framework,
+and has several advantages like hardware optimization and speed,
+parallelized tree-building process, tree pruning using a depth-first approach, and L1 and L2 regularization to reduce or avert overfitting.
+7. Model performance evaluation:
+The study evaluated the performance of the machine learning model using various metrics and compared it with other machine learning and deep learning models.
+8. Clinical validation:
+The study conducted a clinical validation of the model using an independent test set to assess its accuracy in predicting diabetes.
 
-In summary, the most important features in using ECG to predict diabetes using machine learning models are time-aligned features of beats, both HRV-related and HRV-unrelated beat morphology, high-quality ECG recordings, large sample size, machine learning algorithm, model performance evaluation, and clinical validation.
+In summary, the most important features in using ECG to predict diabetes using machine learning models are time-aligned features of beats, both HRV-related and
+HRV-unrelated beat morphology, high-quality ECG recordings, large sample size, machine learning algorithm, model performance evaluation, and clinical validation.
 ```
 
 #### Question: According to the World Health Organization (WHO), noncommunicable diseases (NCDs) kill how many people anually?
