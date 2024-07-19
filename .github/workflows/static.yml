@@ -38,7 +38,7 @@ jobs:
           node-version: '22'
 
       - name: Downgrade npm
-        run: npm install -g npm@8
+        run: npm install -g npm@6
         
       - name: Clear npm cache
         run: npm cache clean --force
