@@ -6,7 +6,7 @@ from safetensors import safe_open
 LLM_MODEL_NAME = "meta-llama/Llama-2-7b-chat-hf"
 EMBEDDING_MODEL_NAME = "sentence-transformers/multi-qa-MiniLM-L6-cos-v1"
 
-model_save_path = "./models/llm_model"
+model_save_path = "../models/llm_model"
 
 showMessage = True
 

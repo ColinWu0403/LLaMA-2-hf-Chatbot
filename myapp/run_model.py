@@ -280,7 +280,7 @@ def generate_response_from_context(model, tokenizer, question, context):
         return None
 
 # Initialize the model, tokenizer, and settings when the module is imported
-model_dir = "./models/"
+model_dir = "../models/"
 model, tokenizer, embed_model, llm_config, llm = initialize_all(model_dir)
 index, responses = load_embed_index()
 

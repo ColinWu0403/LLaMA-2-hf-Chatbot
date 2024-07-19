@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-import time
-from run_model import generate_response, generate_response_from_context, find_best_response, model, tokenizer, embed_model, index, responses
+from myapp.run_model import generate_response, generate_response_from_context, find_best_response, model, tokenizer, embed_model, index, responses
 
 @csrf_exempt
 def chat_view(request):
