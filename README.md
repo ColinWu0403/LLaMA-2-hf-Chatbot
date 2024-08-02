@@ -1,6 +1,8 @@
-# LLM Chatbot from LLaMA-2 model fine-tuned with PDF data
+# LLM Chatbot from LLaMA-2 model fine-tuned using medical data with RAG
 
-This project utilizes HuggingFace's pretrained LLM `meta-llama/Llama-2-7b-chat-hf`, fine-tuned with PDF data, to generate accurate responses to queries.
+This project utilizes HuggingFace's pretrained Large Language Model `meta-llama/Llama-2-7b-chat-hf`, fine-tuned with medical research papers in the form of PDFs, to generate accurate responses to queries.
+
+This is possible using Retrieval Augmented Generation (RAG), where all the papers are read and stored in a Vector Index. Then the embedding model can find the closest matching section of a paper to be used as "context" for a prompt, resulting in more accurate responses.
 
 _save_model.py_ will create and save the model locally. The code for the model was edited from this article: [ Build LLM Chatbot With PDF Documents](https://www.linkedin.com/pulse/build-llm-chatbot-pdf-documents-peng-wang-bq5fc/). I ran the model on Google Collab using L4 GPU. The Jupyter Notebook can be accessed here: [Google Collab Notebook](https://colab.research.google.com/drive/1ittu4zTPqlZF0MFNlG_86_z_DN2kyZ9G?usp=sharing).
 
@@ -45,13 +47,13 @@ Running _save_model.py_ will save the model locally. I'll briefly go over how th
   - LLM model and tokenizer (_llm_model/_ and _llm_tokenizer/_)
   - LLM configuration (_llm_config.json_)
 
-## Chatbot web-application (In progress)
+## Chatbot Web-Application
 
-I used Django and React to create a simple web application as the interface for the chatbot. Users would be able to type their question in the textbox and receive a response from the model, shown when they click send.
+I used Django and React to create a simple SPA (Single Page Application) as the interface for the chatbot. Users are able to type their question in the textbox and receive a response from the model.
 
 #### Run Django Server
 
-I added a script in _manage.py_ to automatically build the React frontend with Vite before starting the Django server, so you don't need to run `npm run build` everytime.
+To test the application yourself, you can run it locally. I added a script in _manage.py_ to automatically build the React frontend with Vite before starting the Django server, so you don't need to run `npm run build` everytime.
 
 ```
 python manage.py runserver
@@ -65,9 +67,9 @@ I ran the model on both my Macbook Air and Google Collab. Running it on my compu
 
 The detailed report of the runtimes and responses from the LLM can be found here: [reports/README.md](reports/README.md)
 
-## RAG (In progress)
+## RAG
 
-I implemented RAG (Retrieval-augmented generation) to better improve the accuracy of the responses. RAG references an authoritative knowledge base outside of the training data before generating a response.
+I implemented RAG (Retrieval Augmented Generation) to better improve the accuracy of the responses. RAG references an authoritative knowledge base outside of the training data before generating a response.
 
 In this case, it would retrive the most relevant section of a research paper in papers/ to add as the context in the prompt.
 
