@@ -83,61 +83,6 @@ choice for a wide range of patients and healthcare settings. As technology conti
 adv
 ```
 
-#### Q: What does REVLIS Biotechnology Corporation Limited do?
-
-##### Context:
-
-```
-Proprietary and Copyright @ Revlis Biotech Strictly Confidential
-2024/6/28
-AI-GLU ® INTELLIGENT HEALTH BLOOD
-GLUCOSE MONITORING DEVICE
-User manual
-```
-
-##### Answer:
-
-```
-Revlis Biotechnology Corporation Limited is a biotechnology company that specializes in the development and commercialization of innovative medical devices.
-The company's flagship product is the AI-GLU ® Intelligent Health Blood Glucose Monitoring Device, which is designed to provide accurate and timely glucose level readings for diabetes patients.
-The device uses advanced artificial intelligence (AI) and machine learning algorithms to analyze the user's glucose data and provide personalized recommendations for managing their condition.
-
-Revlis Biotechnology Corporation Limited's mission is to improve the lives of diabetes patients by providing them with access to cutting-edge medical
-```
-
-#### Question: If I am someone who has diabetes, when should I use REVLIS's AI-GLU Glucose Monitoring Device?
-
-##### Context:
-
-```
-Proprietary and Copyright Strictly Confidential
-35 (4) Taking any medication for diabetes management may affect the  heart and
-ECG signals, which causes the deviation of AI-GLU® blood sugar level. Please
-measure 4~6 hours after taking medication.
-(5) Please do not use this product when undergoing a medical procedure  (such
-as magnetic resonance imaging (MRI), hyperthermia therapy, shock wave
-lithotripsy, cauterization procedures, external defibrillation of the heart, etc.)
-(6) If you experience any discomfort, loss of consciousness, mental confusion
-or even in a state of impending shock, please seek medical attention
-immediately to avoid any delay  in treatment.
-```
-
-##### Answer:
-
-```
-As someone with diabetes, you should use REVLIS's AI-GLU Glucose Monitoring Device when:
-
-1. You are taking any medication for diabetes management:
-The device may affect the ECG signals, which could cause deviation in the blood sugar level. It is recommended to measure 4-6 hours after taking medication.
-2. You are undergoing a medical procedure:
-The device may not work properly during certain medical procedures, such as MRI, hyperthermia therapy, shock wave lithotripsy,
-cauterization procedures, external defibrillation of the heart, etc.
-3. You experience any discomfort, loss of consciousness, mental confusion, or are in a state of impending shock:
-In such cases, seek medical attention immediately to avoid any delay in treatment.
-
-It is important to read the instructions carefully before using the product to ensure proper usage and accurate readings.
-```
-
 #### Question: Using ECG to predict diabetes, what features in the training of a machine learning model are the most important?
 
 ##### Context:
